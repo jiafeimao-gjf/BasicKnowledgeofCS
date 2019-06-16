@@ -1,4 +1,9 @@
-# 字符框
+# 编程基础题
+- 本文件记录一些编程基础题
+- 用c++ ac
+- 如有错误，请无情吐槽
+
+## 字符框
 
 ### 题目描述 
 给你n∗m的二维网格，求2∗2的方格的个数，方框里面的字符可以构成'face'
@@ -63,7 +68,7 @@ int main(){
     return 0;
 }
 ```
-# 初始化扫雷游戏
+## 初始化扫雷游戏
 
 > 链接：https://ac.nowcoder.com/acm/problem/22232
 > 来源：牛客网
@@ -146,7 +151,7 @@ int main(){
 }
 ```
 
-# 约瑟夫环
+## 约瑟夫环
 > 链接：https://ac.nowcoder.com/acm/problem/22227
 > 来源：牛客网
 
@@ -202,7 +207,7 @@ int main(){
     return 0;
 }
 ```
-# 上下金字塔
+## 上下金字塔
 > 链接：https://ac.nowcoder.com/acm/problem/22204
 > 来源：牛客网
 
@@ -270,7 +275,7 @@ int main(){
     return 0;
 }
 ```
-# 字符金字塔
+## 字符金字塔
 > 链接：https://ac.nowcoder.com/acm/problem/22209
 > 来源：牛客网
 
@@ -322,7 +327,7 @@ int main(){
 }
 ```
 
-# 阶乘计算
+## 阶乘计算
 > 链接：https://ac.nowcoder.com/acm/problem/22205
 > 来源：牛客网
 
@@ -363,7 +368,7 @@ int main(){
 }
 ```
 
-# 打印质数表
+## 打印质数表
 > 链接：https://ac.nowcoder.com/acm/problem/22210
 > 来源：牛客网
 
@@ -421,7 +426,7 @@ int main(){
     return 0;
 }
 ```
-# 最大公约数
+## 最大公约数
 > 链接：https://ac.nowcoder.com/acm/problem/22215
 > 来源：牛客网
 
@@ -471,7 +476,7 @@ int main(){
 }
 ```
 
-# 质数数量
+## 质数数量
 > 链接：https://ac.nowcoder.com/acm/problem/22226
 > 来源：牛客网
 
@@ -574,7 +579,7 @@ int main(){
 }
 ```
 
-# 回形矩阵
+## 回形矩阵
 > 链接：https://ac.nowcoder.com/acm/problem/22230
 > 来源：牛客网
 ### 题目描述 
@@ -636,7 +641,7 @@ int main(){
     return 0;
 }
 ```
-# 蛇形矩阵
+## 蛇形矩阵
 > 链接：https://ac.nowcoder.com/acm/problem/22231
 > 来源：牛客网
 > 
@@ -716,7 +721,7 @@ int main(){
     return 0;
 }
 ```
-# 神仙打架
+## 神仙打架
 
 ```
 链接：https://ac.nowcoder.com/acm/problem/22235 来源：牛客网
@@ -787,7 +792,7 @@ int main(){
     return 0;
 }
 ```
-# 过山车
+## 过山车
 > 链接：https://ac.nowcoder.com/acm/problem/22237
 > 来源：牛客网
 
@@ -848,7 +853,7 @@ int main(){
 }
 ```
 
-# 回文对称数
+## 回文对称数
 > 链接：https://ac.nowcoder.com/acm/problem/22169
 > 来源：牛客网
 
@@ -904,7 +909,7 @@ int main(){
 }
 ```
 
-# 前n项和的前n项和
+## 前n项和的前n项和
 > 链接：https://ac.nowcoder.com/acm/problem/22159
 > 来源：牛客网
 
