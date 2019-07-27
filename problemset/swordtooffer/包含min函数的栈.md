@@ -20,7 +20,7 @@ private:
     int length = 0;
 public:
     void push(int value) {
-        if (length >= size){
+        if (length >= size){ // 空间扩容
             int *b = new int[size + 100];
             for (int i = 0;i < length;i++){
                 b[i] = a[i];
