@@ -10,7 +10,8 @@
 #include <cstdio>
 using namespace std;
 /**
- * 编写一个栈，可以以O(1)的时间复杂度返回栈中的最小值
+ * 编写一个栈，可以以O(1)的时间复杂度返回栈中的最小值。
+    完全自己实现。
  */
 class Stack_Min{
 private:
@@ -65,6 +66,9 @@ public:
 ## 剑指offer 中的要求push()、pop()、min() 的事件复杂度都为O(1)
 ### 代码：
 ```c++
+/**
+    借助c++的内置栈实现
+*/
 template <typename T> class StackWithMin{
 public:
     StackWithMin() {}
@@ -86,30 +90,41 @@ private:
     std::stack<T> m_data;
     std::stack<T> m_min;    
 }
-
+/**
+    入栈操作
+*/
 template <typename T> void StackWithMin<T>::push(const T& value) {
     m_data.push(value);
-
+    // 最小值栈为空或者当前值小于栈顶的数值
     if (m_min.size() == 0 || value < m_min.top) {
         m_min.push(value);
-    } else {
-        m_min.push(m_min.top());
+    } else {// 否则
+        m_min.push(m_min.top());// 栈顶数据复压栈
     }
 }
 
+/**
+    出栈操作
+*/
 template <typename T> void StackWithMin:pop(){
+    // 断言
     assert(m_data.size() > 0 && m_min.size() > 0);
 
-    m_data.pop();
-    m_min.pop(); // 感觉这里不对劲呀
+    m_data.pop();// 数据栈出栈
+    m_min.pop(); // 感觉这里不对劲呀，因为入栈时有复入栈所以，这里要出栈，保证最小值同步
 }
 
+/**
+    求最小值操作
+*/
 template <typename T> const T& StackWithMin::min() const {
     assert(m_data > 0 && m_min.size() > 0);
-    return m_min.top();
+    return m_min.top();// 直接返回最小值栈顶元素
 }
 
-
+/**
+    求栈顶元素操作
+*/
 template <typename T> T& StackWithMin<T>::top()
 {
     return m_data.top();
