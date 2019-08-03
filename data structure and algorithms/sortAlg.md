@@ -284,7 +284,7 @@ void merge(int A[], int left, int mid, int right)// 合并两个已排好序的�
     {
         temp[index++] = A[j++];
     }
-    for (int k = 0; k < len; k++)
+    for (int k = 0; k < len; k++) // 将排好序的数组重新复制给原数组
     {
         A[left++] = temp[k];
     }

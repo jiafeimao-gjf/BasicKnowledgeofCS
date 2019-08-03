@@ -3,6 +3,18 @@
 输出描述:
 > 输出所有和为S的连续正数序列。序列内按照从小至大的顺序，序列间按照开始数字从小到大的顺序
 
+### 思路1
+- 双指针，由于数组是有序连续正整数，从小的值开始，
+- 逐渐增大rigth，求和
+- 然后增大left，求和
+- 直到left 超过了中间值的一般
+
+### 思路2
+- 一次性求和，判断
+- 值小了right增加
+- 值大了left增加
+- 类利用了二分查找实现
+
 ```C++
 class Solution {
 public:
@@ -17,7 +29,7 @@ public:
     /*
         两指针，一个指向1，一个指向2，依次叠加.
     */
-    /*
+    
     vector<vector<int> > FindContinuousSequence(int sum) {
         vector<vector<int>> res;
         if (sum < 3) {
@@ -51,7 +63,7 @@ public:
         }
         return res;
     }
-    */
+    
     /*
         1 等差数列求和公式
         2 双指针思路

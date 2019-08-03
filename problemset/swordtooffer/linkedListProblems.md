@@ -35,8 +35,10 @@ struct ListNode {
         return p;
     }
 };
+```
+### 给定一个单链表的头节点head和一个元素节点nodeN，删除该节点nodeN，
+```C++
 /**
- * 给定一个单链表的头节点head和一个元素节点nodeN，删除该该节点nodeN，
  * 要求算法时间复杂度为1，然后返回该链表的头节点
  * 弄清楚不同的情况，进行处理。综合的时间复杂度还是降低了。
  * n-1  个O(1) 和 1个O(n), 总的可以认为为O(1)
@@ -66,9 +68,10 @@ public:
         }
     }
 };
-
+```
 ## 题目描述
-在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1->2->3->3->4->4->5 处理后为 1->2->
+在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
+```C++
 /**
  * 删除单链表中重复的节点
  */
@@ -146,9 +149,9 @@ public:
         }
     }
 };
-/**
- * 将两个单调非减序列合并，并保持两个元素的相对未知不变。归并思想
- */
+```
+### 将两个单调非减序列合并，并保持两个元素的相对未知不变。非递归归并实现
+```C++
 class MergeList {
 public:
     ListNode* merge(ListNode *pHead1, ListNode *pHead2)
@@ -200,10 +203,9 @@ public:
         return head;
     }
 };
-
-/**
- * 求两个链表的共同部分，并返回共同部分的头节点
- */
+```
+### 求两个链表的共同部分，并返回共同部分的头节点
+ ```C++
 class FindCommonNodePart{
     /**
      * 暴力循环求解 O(n^2)
@@ -336,8 +338,10 @@ class FindCommonNodePart{
         
     }
 };
+```
 ## 题目描述
 给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
+```C++
 /**
  * 获取含有环的链表，环的入口节点
  */
@@ -401,7 +405,15 @@ public:
         return pNode1;
     }
 };
-
+```
+### 复杂链表复制：
+输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），
+返回结果为复制后复杂链表的head。
+（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
+分析：
+因为链表本身的连续性，所以，随机指针只是一个指针，目的是实现一个随机的下一个节点
+随机下节点不需要复制。
+```C++
 /*
 struct RandomListNode {
     int label;
@@ -410,13 +422,6 @@ struct RandomListNode {
             label(x), next(NULL), random(NULL) {
     }
 };
-题目：
-输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），
-返回结果为复制后复杂链表的head。
-（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
-分析：
-因为链表本身的连续性，所以，随机指针只是一个指针，目的是实现一个随机的下一个节点
-随机下节点不需要复制。
 */
 class CopyComplexList {
 public:
@@ -436,9 +441,9 @@ public:
         // 链表随机节点处理，
         currNode = pHead;
         while (currNode != nullptr) {
-            RandomListNode * node = currNode->next;// 获取当前节点的复制节点
-            if (currNode->random != nullptr) {// 当前节点有随机下节点。
-                node->random = currNode->random->next;// 让随机下节点引用指向复制节点
+            RandomListNode * node = currNode->next;     // 获取当前节点的复制节点
+            if (currNode->random != nullptr) {          // 当前节点有随机下节点。
+                node->random = currNode->random->next;  // 让随机下节点引用指向复制节点
             }
             currNode = node->next;// 跟新当前节点
         }
@@ -447,9 +452,9 @@ public:
         RandomListNode *tmp;
         currNode = pHead;
         while (currNode->next != nullptr) {
-            tmp = currNode->next;// 暂时存储引用复制节点
-            currNode->next = tmp->next;// 截断对复制节点的引用
-            currNode = tmp; //不仅原节点对复制节点的引用要截断，复制节点对原节点的引用也要截断
+            tmp = currNode->next;        // 暂时存储引用复制节点
+            currNode->next = tmp->next;  // 截断对复制节点的引用
+            currNode = tmp;          //不仅原节点对复制节点的引用要截断，复制节点对原节点的引用也要截断
         }
         return pCloneHead;
     }
