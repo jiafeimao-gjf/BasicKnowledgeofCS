@@ -64,10 +64,12 @@ int longestPalindrome(const char *str){
 * 第二步：求出以i为中心的回文串的长度
 * 第三步：更新最大的回文子串的长度
 ##### 代码：
+#### C++版
 ```c++
 int palindrome(const char *str, int mid){
     int left = mid - 1;
     int right = mid + 1;
+    // 最开始元素相同处理
     if (str[mid] == str[left] && str[mid] != str[right]){
         left--;
     } else {
@@ -102,6 +104,40 @@ int longestPalindrome(const char *str){
     return longest;
 }
 ```
+#### Java版
+```java
+class Solution {
+    public String longestPalindrome(String s) {
+        // 特殊情况处理
+        if (s == "" || s.length() < 1) { return "";}
+        // 左右指针
+        int start = 0,end = 0;
+        for (int i = 0;i < s.length(); i++) {
+            // 求i处的回文串的长度
+            int len1 = expandAroundCenter(s,i,i);
+            int len2 = expandAroundCenter(s,i,i+1);
+            int len = Math.max(len1,len2);
+            // 更新最长回文字串的区间
+            if (len > end - start) {
+                start = i - (len - 1)/2;//中间点减去一半的长度，字串的开始
+                end = i + len / 2;// 字串的结束
+            }
+        }
+        return s.substring(start,end + 1);
+    }
+    // 子函数，实现中心扩展求最长的回文串
+    private int  expandAroundCenter(String s,int left,int right) {
+        int L = left;
+        int R = right;
+        while(L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
+        }
+        return (R-L-1);
+    }
+}
+```
+
 #### 3.1 动态规划
 * 第一步：初始化辅助数组p[len][len]，每个字符本身是长度为1的回文串，相邻两个相等的字符也是长度为1的回文串
     * p[i][j] = 1，表示j-1~i+1的子串是回文串
