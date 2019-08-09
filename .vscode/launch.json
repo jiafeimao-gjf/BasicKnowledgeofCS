@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StringTest",
+            "request": "launch",
+            "mainClass": "javaTest.StringTest",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StringTest",
+            "request": "launch",
+            "mainClass": "java.StringTest",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        }
+    ]
+}
