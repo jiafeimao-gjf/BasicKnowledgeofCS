@@ -1,4 +1,4 @@
-package javaTest;
+package javatest;
 
 public class StringTest{
     static String str = "abcdefg";
