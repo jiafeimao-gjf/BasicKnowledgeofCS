@@ -149,8 +149,91 @@ SELECT employees.emp_no FROM employees
     LEFT JOIN dept_manager
     ON employees.emp_no = dept_manager.emp_no
 WHERE dept_no IS NULL
-```
+```  
+11. 获取员工当前的manager  
+- 获取所有员工当前的manager，如果当前的manager是自己的话结果不显示，当前表示to_date='9999-01-01'。
+- 结果第一列给出当前员工的emp_no,第二列给出其manager对应的manager_no。
+```sql
+select de.emp_no,dm.emp_no AS manager_no 
+    from dept_emp as de inner join dept_manager as dm 
+    on de.dept_no = dm.dept_no -- 部门一致
+    -- 时间期限限定 manager自己不用显示（员工表的员工号不应该与部门表的员工号一致）
+    where dm.to_date = '9999-01-01' AND de.to_date = '9999-01-01' AND de.emp_no <> dm.emp_no
 
+```
+12. 获取所有部门中当前员工薪水最高的相关信息
+- 获取所有部门中当前员工薪水最高的相关信息，给出dept_no, emp_no以及其对应的salary
+```sql
+select d.dept_no,s.emp_no,max(s.salary) as salary
+    from salaries as s inner join dept_emp as d
+    on d.emp_no = s.emp_no
+    where d.to_date = '9999-01-01' and s.to_date = '9999-01-01'
+    -- group by 的分组功能，分了组就会取每组的最大值
+    group by d.dept_no
+
+```
+13. 从titles表获取按照title进行分组
+从titles表获取按照title进行分组，每组个数大于等于2，给出title以及对应的数目t。
+```sql
+CREATE TABLE IF NOT EXISTS "titles" (
+`emp_no` int(11) NOT NULL,
+`title` varchar(50) NOT NULL,
+`from_date` date NOT NULL,
+`to_date` date DEFAULT NULL);
+```
+```sql
+select title,count(title) as t 
+    from titles
+    group by title
+    -- 条件：title的数量大于等于2
+    -- 由于WHERE后不可跟COUNT()函数，故用HAVING语句来限定t>=2的条件
+    having t >= 2
+```
+14. 从titles表获取按照title进行分组，注意对于重复的emp_no进行忽略。
+- 从titles表获取按照title进行分组，每组个数大于等于2，给出title以及对应的数目t。
+- 注意对于重复的emp_no进行忽略。
+```sql
+-- distinct emp_no 避免emp_no重复
+select title,count(distinct emp_no) as t 
+    from titles
+    group by title
+    -- 条件：title的数量大于等于2
+    -- 由于WHERE后不可跟COUNT()函数，故用HAVING语句来限定t>=2的条件
+    having t >= 2
+```
+15. 查找employees表
+- 查找employees表所有emp_no为奇数，且last_name不为Mary的员工信息，并按照hire_date逆序排列
+```sql
+select * from employees
+    -- 字符串 要用: ''
+    where emp_no % 2 = 1 and last_name != 'Mary'
+    -- order by XXX desc 表示按照 XXX 逆序
+    order by hire_date desc
+```
+16. 统计出当前各个title类型对应的员工当前薪水对应的平均工资
+- 统计出当前各个title类型对应的员工当前（to_date='9999-01-01'）薪水对应的平均工资。结果给出title以及平均工资avg。
+```sql
+select t.title,avg(s.salary)
+    from salaries as s inner join titles as t
+    on s.emp_no = t.emp_no
+    where s.to_date = '9999-01-01' and t.to_date = '9999-01-01'
+    group by t.title
+```
+17. 获取当前薪水第二多的员工的emp_no以及其对应的薪水salary
+- 获取当前（to_date='9999-01-01'）薪水第二多的员工的emp_no以及其对应的薪水salary
+- select * from table limit [m],n;
+- 其中
+    - m—— [m]为可选，如果填写表示skip步长，即跳过m条。
+    - n——显示条数。指从第m+1条记录开始，取n条记录。
+```sql
+select emp_no,salary
+    from salaries
+    where to_date  = '9999-01-01' and 
+    -- order by 排序
+    -- desc 逆序
+    -- limit 限制从第几位开始
+    salary = (select distinct salary from salaries order by salary desc limit 1,1)
+```
 ```sql
 
 ```
@@ -158,7 +241,6 @@ WHERE dept_no IS NULL
 ```sql
 
 ```
-
 ```sql
 
 ```
@@ -166,7 +248,6 @@ WHERE dept_no IS NULL
 ```sql
 
 ```
-
 ```sql
 
 ```
