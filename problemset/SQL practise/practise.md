@@ -234,15 +234,41 @@ select emp_no,salary
     -- limit 限制从第几位开始
     salary = (select distinct salary from salaries order by salary desc limit 1,1)
 ```
+18. 获取当前薪水第二多的员工的emp_no以及其对应的薪水salary，不准使用order by
+- 多级查询，
+- 不等于号 <>
+- max函数
 ```sql
-
+select e.emp_no,s.salary,e.last_name,e.first_name 
+    from employees as e inner join salaries as s
+    on e.emp_no = s.emp_no
+    where to_date = '9999-01-01' and 
+        salary = (
+        select max(salary) from salaries
+        where salary <> (select max(salary) from salaries where to_date = '9999-01-01')
+        and to_date = '9999-01-01'
+    )
 ```
-
+19. 查找所有员工的last_name和first_name以及对应的dept_name
+- 查找所有员工的last_name和first_name以及对应的dept_name，也包括暂时没有分配部门的员工
 ```sql
-
+select e.last_name,e.first_name,dp.dept_name 
+    from (employees as e left join dept_emp as de on e.emp_no = de.emp_no)
+    left join departments as dp on dp.dept_no = de.dept_no
 ```
+20. 查找员工编号emp_no为10001其自入职以来的薪水salary涨幅值growth
+- min 和 max
 ```sql
+-- way 1
+select (max(salary) - min(salary)) as growth 
+    from salaries where emp_no = '10001'
 
+-- way 2
+select (    
+    (select salary from salaries where emp_no = '10001' order by to_date  desc limit 1) -
+    (select salary from salaries where emp_no = '10001' order by to_date asc limit 1)
+    ) 
+    as growth 
 ```
 
 ```sql
