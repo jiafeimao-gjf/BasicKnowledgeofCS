@@ -270,10 +270,29 @@ select (
     ) 
     as growth 
 ```
-
+21. 查找所有员工自入职以来的薪水涨幅情况，给出员工编号emp_no以及其对应的薪水涨幅growth，并按照growth进行升序
+- 综合使用left join 
+- order by
+- 根据所给表格，找出查找所需数据的条件
 ```sql
-
+select sCurrent.emp_no,(sCurrent.salary-sStart.salary) as growth
+from (select s.emp_no,s.salary from employees e left join salaries s on e.emp_no = s.emp_no where s.to_date = '9999-01-01') as sCurrent
+inner join (select s.emp_no,s.salary from employees e left join salaries s on e.emp_no = s.emp_no where s.from_date = e.hire_date) as sStart
+on sCurrent.emp_no = sStart.emp_no
+order by growth
 ```
+22. 统计各个部门对应员工涨幅的次数总和，给出部门编码dept_no、部门名称dept_name以及次数sum
+- 按照部门id分组，查询所有员工的工资
+- 
 ```sql
-
+-- 简单解法
+select dm.dept_no,dm.dept_name,count(*) as sum
+    from departments as dm,dept_emp as de,salaries as s
+    where s.emp_no = de.emp_no and dm.dept_no = de.dept_no
+    group by dm.dept_no
+-- 利用join，和上面一样的？
+SELECT de.dept_no, dp.dept_name, COUNT(s.salary) AS sum 
+FROM (dept_emp AS de INNER JOIN salaries AS s ON de.emp_no = s.emp_no) 
+INNER JOIN departments AS dp ON de.dept_no = dp.dept_no 
+GROUP BY de.dept_no
 ```
