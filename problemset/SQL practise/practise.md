@@ -296,3 +296,31 @@ FROM (dept_emp AS de INNER JOIN salaries AS s ON de.emp_no = s.emp_no)
 INNER JOIN departments AS dp ON de.dept_no = dp.dept_no 
 GROUP BY de.dept_no
 ```
+
+23. 对所有员工的当前(to_date='9999-01-01')薪水按照salary进行按照1-N的排名，相同salary并列且按照emp_no升序排列
+- 按照薪水排名
+- 按照emp_no排名
+- 排名累计
+```sql
+-- 求排名： s1.salary <= s2.salary，意思是在输出s1.salary的情况下，有多少个s2.salary大于等于s1.salary，
+select s1.emp_no,s1.salary,count(distinct s2.salary) as rank
+from salaries as s1,salaries as s2
+-- 找到满足时间条件的数据，和排序数据条件
+where s1.to_date = '9999-01-01' and s2.to_date = '9999-01-01' and s1.salary <= s2.salary
+-- 按照emp_no 进行分组
+group by s1.emp_no
+-- 进行排序，按照两个属性排序
+order by s1.salary desc,s1.emp_no asc
+```
+
+24. 获取所有非manager员工当前的薪水情况，给出dept_no、emp_no以及salary ，当前表示to_date='9999-01-01'
+- 一步一步来
+    - 先找出所有满足时间条件的工资数据
+    - 然后将工资数据与部门no绑定
+    - 去除其中的manager的工资数据
+```sql
+select de.dept_no,s.emp_no,s.salary
+from (employees as e inner join salaries as s on s.emp_no = e.emp_no and s.to_date = '9999-01-01')
+inner join dept_emp as de on e.emp_no = de.emp_no
+where de.emp_no not in (select emp_no from dept_manager where to_date = '9999-01-01')
+```
