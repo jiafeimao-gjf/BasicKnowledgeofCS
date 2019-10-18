@@ -324,3 +324,26 @@ from (employees as e inner join salaries as s on s.emp_no = e.emp_no and s.to_da
 inner join dept_emp as de on e.emp_no = de.emp_no
 where de.emp_no not in (select emp_no from dept_manager where to_date = '9999-01-01')
 ```
+
+25. 获取员工其当前的薪水比其manager当前薪水还高的相关信息，当前表示to_date='9999-01-01',
+- 结果第一列给出员工的emp_no，
+- 第二列给出其manager的manager_no，
+- 第三列给出该员工当前的薪水emp_salary,
+- 第四列给该员工对应的manager当前的薪水manager_salary
+
+- 先获取所有员工的工资、和部门信息
+- 再获取所有经理的工资、和部门信息
+- 将部门相同的员工和经理的工资进行比较，求员工工资高于经理工资的信息
+```sql
+select des.emp_no as emp_no,dms.emp_no as manager_no,des.salary as emp_salary,dms.salary as manager_salary 
+from
+    (select s.emp_no,s.salary,de.dept_no 
+     from salaries as s 
+     inner join dept_emp as de 
+     on s.emp_no = de.emp_no and s.to_date = '9999-01-01') as des,
+    (select s.emp_no,s.salary,dm.dept_no 
+     from salaries as s 
+     inner join dept_manager as dm 
+     on s.emp_no = dm.emp_no and s.to_date = '9999-01-01') as dms
+where des.dept_no = dms.dept_no and des.salary > dms.salary
+```
