@@ -347,3 +347,92 @@ from
      on s.emp_no = dm.emp_no and s.to_date = '9999-01-01') as dms
 where des.dept_no = dms.dept_no and des.salary > dms.salary
 ```
+
+26. 汇总各个部门当前员工的title类型的分配数目，结果给出部门编号dept_no、dept_name、其当前员工所有的title以及该类型title对应的数目count
+- 按照部门和title来统计数量
+```sql
+select de.dept_no,d.dept_name,t.title,count(t.title) as count 
+from departments as d,dept_emp as de,titles  as t
+where d.dept_no = de.dept_no and de.emp_no = t.emp_no and de.to_date = '9999-01-01' and t.to_date = '9999-01-01'
+group by d.dept_no,t.title
+
+```
+- 使用inner join
+```sql
+select de.dept_no,dp.dapt_name,t.title,count(t.title) as count
+from titles as t inner join dept_emp as de
+on t.emp_no = de.emp_no and de.to_date = '9999-01-01' and t.to_date = '9999-01-01'
+inner join departments as dp
+on de.dept_no = dp.dept_no
+group by de.dept_no,t.title
+```
+27. 给出每个员工每年薪水涨幅超过5000的员工编号emp_no、薪水变更开始日期from_date以及薪水涨幅值salary_growth，并按照salary_growth逆序排列。
+提示：在sqlite中获取datetime时间对应的年份函数为strftime('%Y', to_date)
+```sql
+select s2.emp_no,s2.from_date,(s2.salary - s1.salary) as salary_growth
+from salaries as s1,salaries as s2
+where s1.emp_no = s2.emp_no
+-- 工资涨幅
+and salary_growth > 5000
+-- 时间限制
+and (strftime("%Y",s2.to_date) - strftime("%Y",s1.to_date) = 1 
+or strftime("%Y",s2.from_date) - strftime("%Y",s1.from_date) = 1)
+order by salary_growth desc
+```
+28. 查找描述信息中包括robot的电影对应的分类名称以及电影数目，而且还需要该分类对应电影数量>=5部
+- 包括robot
+- 电影数量得不低于5部
+- 电影名称、电影分类、电影数目
+```sql
+CREATE TABLE IF NOT EXISTS film (
+film_id smallint(5)  NOT NULL DEFAULT '0',
+title varchar(255) NOT NULL,
+description text,
+PRIMARY KEY (film_id));
+
+CREATE TABLE category  (
+category_id  tinyint(3)  NOT NULL ,
+name  varchar(25) NOT NULL, `last_update` timestamp,
+PRIMARY KEY ( category_id ));
+
+CREATE TABLE film_category  (
+film_id  smallint(5)  NOT NULL,
+category_id  tinyint(3)  NOT NULL, `last_update` timestamp);
+```
+- 模糊查询
+- 先找到出现次数不低于5的分类
+```sql
+select c.name, count(fc.film_id) 
+    from 
+        (select category_id, count(film_id) as category_num from 
+        film_category group by category_id having count(film_id) >= 5) as cc,
+        film as f,file_category as fc, category as c
+    where f.description like '%robot%'
+        and f.film_id = fc.film_id
+        and c.category_id = fc.category_id
+        and c.category_id = cc.category_id
+```
+29. 使用join查询方式找出没有分类的电影id以及名称
+```sql
+select f.film_id,f.title 
+from film as f right join film_category as fc
+-- 因为结果还没出来，所以fc.category_id is null 无效
+on fc.category_id is null and f.film_id = fc.film_id
+
+select f.film_id, f,title from film f left join film_category fc
+on f.film_id = fc.film_id where fc.category_id is null
+```
+
+30. 使用子查询的方式找出属于Action分类的所有电影对应的title,description
+```sql
+-- 找到满足分类的分类id
+select category_id from category where name = 'Action' as cid
+
+select f.title,f.description from (
+    -- 找到film_id
+    select film_id from (
+        select category_id from category where name = 'Action'
+    ) as cid, film_category as fc where fc.category_id = cid.category_id
+) as fd,film as f
+where f.film_id = fd.film_id
+```
