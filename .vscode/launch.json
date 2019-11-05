@@ -2,6 +2,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Leedcode72",
+            "request": "launch",
+            "mainClass": "problemset.code.Leedcode72",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Leedcode71",
+            "request": "launch",
+            "mainClass": "problemset.code.Leedcode71",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Leedcode70",
+            "request": "launch",
+            "mainClass": "problemset.code.Leedcode70",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Leedcode69",
+            "request": "launch",
+            "mainClass": "problemset.code.Leedcode69",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Solution42",
             "request": "launch",
             "mainClass": "javatest.Solution42",
