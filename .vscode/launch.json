@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Leedcode97",
+            "request": "launch",
+            "mainClass": "problemset.code.Leedcode97",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Leedcode72",
             "request": "launch",
             "mainClass": "problemset.code.Leedcode72",
