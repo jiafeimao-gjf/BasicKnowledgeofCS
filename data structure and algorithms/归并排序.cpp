@@ -1,25 +1,25 @@
 #include <stdio.h>
 #include <limits.h>
 
-// ·ÖÀà -------------- ÄÚ²¿±È½ÏÅÅĞò
-// Êı¾İ½á¹¹ ---------- Êı×é
-// ×î²îÊ±¼ä¸´ÔÓ¶È ---- O(nlogn)
-// ×îÓÅÊ±¼ä¸´ÔÓ¶È ---- O(nlogn)
-// Æ½¾ùÊ±¼ä¸´ÔÓ¶È ---- O(nlogn)
-// ËùĞè¸¨Öú¿Õ¼ä ------ O(n)
-// ÎÈ¶¨ĞÔ ------------ ÎÈ¶¨
+// åˆ†ç±» -------------- å†…éƒ¨æ¯”è¾ƒæ’åº
+// æ•°æ®ç»“æ„ ---------- æ•°ç»„
+// æœ€å·®æ—¶é—´å¤æ‚åº¦ ---- O(nlogn)
+// æœ€ä¼˜æ—¶é—´å¤æ‚åº¦ ---- O(nlogn)
+// å¹³å‡æ—¶é—´å¤æ‚åº¦ ---- O(nlogn)
+// æ‰€éœ€è¾…åŠ©ç©ºé—´ ------ O(n)
+// ç¨³å®šæ€§ ------------ ç¨³å®š
 
 
-void Merge(int A[], int left, int mid, int right)// ºÏ²¢Á½¸öÒÑÅÅºÃĞòµÄÊı×éA[left...mid]ºÍA[mid+1...right]
+void Merge(int A[], int left, int mid, int right)// åˆå¹¶ä¸¤ä¸ªå·²æ’å¥½åºçš„æ•°ç»„A[left...mid]å’ŒA[mid+1...right]
 {
     int len = right - left + 1;
-    int *temp = new int[len];       // ¸¨Öú¿Õ¼äO(n)
+    int *temp = new int[len];       // è¾…åŠ©ç©ºé—´O(n)
     int index = 0;
-    int i = left;                   // Ç°Ò»Êı×éµÄÆğÊ¼ÔªËØ
-    int j = mid + 1;                // ºóÒ»Êı×éµÄÆğÊ¼ÔªËØ
+    int i = left;                   // å‰ä¸€æ•°ç»„çš„èµ·å§‹å…ƒç´ 
+    int j = mid + 1;                // åä¸€æ•°ç»„çš„èµ·å§‹å…ƒç´ 
     while (i <= mid && j <= right)
     {
-        temp[index++] = A[i] <= A[j] ? A[i++] : A[j++];  // ´øµÈºÅ±£Ö¤¹é²¢ÅÅĞòµÄÎÈ¶¨ĞÔ
+        temp[index++] = A[i] <= A[j] ? A[i++] : A[j++];  // å¸¦ç­‰å·ä¿è¯å½’å¹¶æ’åºçš„ç¨³å®šæ€§
     }
     while (i <= mid)
     {
@@ -35,15 +35,15 @@ void Merge(int A[], int left, int mid, int right)// ºÏ²¢Á½¸öÒÑÅÅºÃĞòµÄÊı×éA[left
     }
 }
 
-void MergeSortRecursion(int A[], int left, int right)    // µİ¹éÊµÏÖµÄ¹é²¢ÅÅĞò(×Ô¶¥ÏòÏÂ)
+void MergeSortRecursion(int A[], int left, int right)    // é€’å½’å®ç°çš„å½’å¹¶æ’åº(è‡ªé¡¶å‘ä¸‹)
 {
-    if (left == right)    // µ±´ıÅÅĞòµÄĞòÁĞ³¤¶ÈÎª1Ê±£¬µİ¹é¿ªÊ¼»ØËİ£¬½øĞĞmerge²Ù×÷
+    if (left == right)    // å½“å¾…æ’åºçš„åºåˆ—é•¿åº¦ä¸º1æ—¶ï¼Œé€’å½’å¼€å§‹å›æº¯ï¼Œè¿›è¡Œmergeæ“ä½œ
         return;
     int mid = (left + right) / 2;
     MergeSortRecursion(A, left, mid);
     MergeSortRecursion(A, mid + 1, right);
     Merge(A, left, mid, right);
-    printf("µİ¹é¹é²¢£º"); 
+    printf("é€’å½’å½’å¹¶ï¼š"); 
     for (int j = 0; j <= right; j++)
     {
         printf("%d ", A[j]);
@@ -51,20 +51,20 @@ void MergeSortRecursion(int A[], int left, int right)    // µİ¹éÊµÏÖµÄ¹é²¢ÅÅĞò(×
     printf("\n");
 }
 
-void MergeSortIteration(int A[], int len)    // ·Çµİ¹é(µü´ú)ÊµÏÖµÄ¹é²¢ÅÅĞò(×Ôµ×ÏòÉÏ)
+void MergeSortIteration(int A[], int len)    // éé€’å½’(è¿­ä»£)å®ç°çš„å½’å¹¶æ’åº(è‡ªåº•å‘ä¸Š)
 {
-    int left, mid, right;// ×ÓÊı×éË÷Òı,Ç°Ò»¸öÎªA[left...mid]£¬ºóÒ»¸ö×ÓÊı×éÎªA[mid+1...right]
-    for (int i = 1; i < len; i *= 2)        // ×ÓÊı×éµÄ´óĞ¡i³õÊ¼Îª1£¬Ã¿ÂÖ·­±¶
+    int left, mid, right;// å­æ•°ç»„ç´¢å¼•,å‰ä¸€ä¸ªä¸ºA[left...mid]ï¼Œåä¸€ä¸ªå­æ•°ç»„ä¸ºA[mid+1...right]
+    for (int i = 1; i < len; i *= 2)        // å­æ•°ç»„çš„å¤§å°iåˆå§‹ä¸º1ï¼Œæ¯è½®ç¿»å€
     {
         left = 0;
-        while (left + i < len)              // ºóÒ»¸ö×ÓÊı×é´æÔÚ(ĞèÒª¹é²¢)
+        while (left + i < len)              // åä¸€ä¸ªå­æ•°ç»„å­˜åœ¨(éœ€è¦å½’å¹¶)
         {
             mid = left + i - 1;
-            right = mid + i < len ? mid + i : len - 1;// ºóÒ»¸ö×ÓÊı×é´óĞ¡¿ÉÄÜ²»¹»
+            right = mid + i < len ? mid + i : len - 1;// åä¸€ä¸ªå­æ•°ç»„å¤§å°å¯èƒ½ä¸å¤Ÿ
             Merge(A, left, mid, right);
-            left = right + 1;               // Ç°Ò»¸ö×ÓÊı×éË÷ÒıÏòºóÒÆ¶¯
+            left = right + 1;               // å‰ä¸€ä¸ªå­æ•°ç»„ç´¢å¼•å‘åç§»åŠ¨
         }
-        printf("µÚ%dÌË£º",i); 
+        printf("ç¬¬%dè¶Ÿï¼š",i); 
 	    for (int j = 0; j < len; j++)
 	    {
 	        printf("%d ", A[j]);
@@ -75,19 +75,19 @@ void MergeSortIteration(int A[], int len)    // ·Çµİ¹é(µü´ú)ÊµÏÖµÄ¹é²¢ÅÅĞò(×Ôµ×Ï
 
 int main()
 {
-    int A1[] = { 6, 5, 3, 1, 8, 7, 2, 4 };      // ´ÓĞ¡µ½´ó¹é²¢ÅÅĞò
+    int A1[] = { 6, 5, 3, 1, 8, 7, 2, 4 };      // ä»å°åˆ°å¤§å½’å¹¶æ’åº
     int A2[] = { 6, 5, 3, 1, 8, 7, 2, 4 };
     int n1 = sizeof(A1) / sizeof(int);
     int n2 = sizeof(A2) / sizeof(int);
-    MergeSortRecursion(A1, 0, n1 - 1);          // µİ¹éÊµÏÖ
-    MergeSortIteration(A2, n2);                 // ·Çµİ¹éÊµÏÖ
-    printf("µİ¹éÊµÏÖµÄ¹é²¢ÅÅĞò½á¹û£º");
+    MergeSortRecursion(A1, 0, n1 - 1);          // é€’å½’å®ç°
+    MergeSortIteration(A2, n2);                 // éé€’å½’å®ç°
+    printf("é€’å½’å®ç°çš„å½’å¹¶æ’åºç»“æœï¼š");
     for (int i = 0; i < n1; i++)
     {
         printf("%d ", A1[i]);
     }
     printf("\n");
-    printf("·Çµİ¹éÊµÏÖµÄ¹é²¢ÅÅĞò½á¹û£º");
+    printf("éé€’å½’å®ç°çš„å½’å¹¶æ’åºç»“æœï¼š");
     for (int i = 0; i < n2; i++)
     {
         printf("%d ", A2[i]);

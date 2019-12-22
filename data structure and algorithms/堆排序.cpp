@@ -1,17 +1,17 @@
 #include <stdio.h>
 
-// ���� -------------- �ڲ��Ƚ�����
-// ���ݽṹ ---------- ����
-// ���ʱ�临�Ӷ� ---- O(nlogn)
-// ����ʱ�临�Ӷ� ---- O(nlogn)
-// ƽ��ʱ�临�Ӷ� ---- O(nlogn)
-// ���踨���ռ� ------ O(1)
-// �ȶ��� ------------ ���ȶ�
+// 分类 -------------- 内部比较排序
+// 数据结构 ---------- 数组
+// 最差时间复杂度 ---- O(nlogn)
+// 最优时间复杂度 ---- O(nlogn)
+// 平均时间复杂度 ---- O(nlogn)
+// 所需辅助空间 ------ O(1)
+// 稳定性 ------------ 不稳定
 
-// ������
+// 堆排序：
 /*
- * ��һ�����ѣ���֤���еĸ��ڵ㶼�������Ӧ�����Һ��� 
- * �ڶ��� ������Ԫ�صĸ�����Ϊ 0���Ӷ�ʹ�������Ϊ�������� 
+ * 第一，建堆，保证所有的父节点都大于其对应的左右孩子 
+ * 第二， 将无序元素的个数降为 0，从而使得这个堆为有序序列 
  *
 */ 
 void Swap(int A[], int i, int j)
@@ -21,50 +21,50 @@ void Swap(int A[], int i, int j)
     A[j] = temp;
 }
 
-void Heapify(int A[], int i, int size)  // ��A[i]���½��жѵ�����size�Ǵ������Ԫ�ظ��� 
+void Heapify(int A[], int i, int size)  // 从A[i]向下进行堆调整，size是待排序的元素个数 
 {
-    int left_child = 2 * i + 1;         // ��������
-    int right_child = 2 * i + 2;        // �Һ�������
-    int max = i;                        // ѡ����ǰ����������Һ�������֮�е����ֵ
-    if (left_child < size && A[left_child] > A[max])//��ǰ��������ӱȽ� 
+    int left_child = 2 * i + 1;         // 左孩子索引
+    int right_child = 2 * i + 2;        // 右孩子索引
+    int max = i;                        // 选出当前结点与其左右孩子三者之中的最大值
+    if (left_child < size && A[left_child] > A[max])//当前结点与左孩子比较 
         max = left_child;
-    if (right_child < size && A[right_child] > A[max])//��ǰ������Һ��ӱȽ� 
+    if (right_child < size && A[right_child] > A[max])//当前结点与右孩子比较 
         max = right_child;
-    if (max != i)//���ֵ���ǵ�ǰ��� 
+    if (max != i)//最大值不是当前结点 
     {
-        Swap(A, i, max);                // �ѵ�ǰ�����������(ֱ��)�ӽڵ���н��� 
-        Heapify(A, max, size);          // �ݹ���ã������ӵ�ǰ������½��жѵ����������������ֵ 
+        Swap(A, i, max);                // 把当前结点和它的最大(直接)子节点进行交换 
+        Heapify(A, max, size);          // 递归调用，继续从当前结点向下进行堆调整，求子树的最大值 
     }
 }
 
-int BuildHeap(int A[], int n)           // ���ѣ�ʱ�临�Ӷ�O(n)
+int BuildHeap(int A[], int n)           // 建堆，时间复杂度O(n)
 {
     int heap_size = n;
-    for (int i = heap_size / 2 - 1; i >= 0; i--) // ��ÿһ����Ҷ��㿪ʼ���½��жѵ���
-    // heap_size / 2 - 1 ����˼��  �����֮���û�����Һ����ˣ����Դ������㿪ʼ 
+    for (int i = heap_size / 2 - 1; i >= 0; i--) // 从每一个非叶结点开始向下进行堆调整
+    // heap_size / 2 - 1 的意思是  这个数之后就没有左右孩子了，所以从这个结点开始 
         Heapify(A, i, heap_size);
     return heap_size;
 }
 
 void HeapSort(int A[], int n)
 {
-    int heap_size = BuildHeap(A, n);    // ����һ������
+    int heap_size = BuildHeap(A, n);    // 建立一个最大堆
     int k = 0;
-    while (heap_size > 1)				// �ѣ���������Ԫ�ظ�������1��δ�������
+    while (heap_size > 1)				// 堆（无序区）元素个数大于1，未完成排序
     {
-        // ���Ѷ�Ԫ����ѵ����һ��Ԫ�ػ��������Ӷ���ȥ�����һ��Ԫ��
-        // �˴������������п��ܰѺ���Ԫ�ص��ȶ��Դ��ң����Զ������ǲ��ȶ��������㷨
+        // 将堆顶元素与堆的最后一个元素互换，并从堆中去掉最后一个元素
+        // 此处交换操作很有可能把后面元素的稳定性打乱，所以堆排序是不稳定的排序算法
         Swap(A, 0, --heap_size);
-        Heapify(A, 0, heap_size);     // ���µĶѶ�Ԫ�ؿ�ʼ���½��жѵ�����ʱ�临�Ӷ�O(logn)
+        Heapify(A, 0, heap_size);     // 从新的堆顶元素开始向下进行堆调整，时间复杂度O(logn)
     }
 }
 
 int main()
 {
-    int A[] = { 5, 2, 9, 4, 7, 6, 1, 3, 8,12,11,10 };// ��С���������
+    int A[] = { 5, 2, 9, 4, 7, 6, 1, 3, 8,12,11,10 };// 从小到大堆排序
     int n = sizeof(A) / sizeof(int);
     HeapSort(A, n);
-    printf("����������");
+    printf("堆排序结果：");
     for (int i = 0; i < n; i++)
     {
         printf("%d ", A[i]);

@@ -14,7 +14,7 @@ class QuickSortRealize{
     private int getP(int a[],int l,int r) {
         int key = a[l];
         int index = r;
-        for (inr i = r;i > l;i--) {
+        for (int i = r;i > l;i--) {
             if (a[i] >= key) {
                 swap(a, index--, r);
             }

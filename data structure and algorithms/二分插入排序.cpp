@@ -1,34 +1,34 @@
 #include <stdio.h>
 
-// ���� -------------- �ڲ��Ƚ�����
-// ���ݽṹ ---------- ����
-// ���ʱ�临�Ӷ� ---- O(n^2)
-// ����ʱ�临�Ӷ� ---- O(nlogn)
-// ƽ��ʱ�临�Ӷ� ---- O(n^2)
-// ���踨���ռ� ------ O(1)
-// �ȶ��� ------------ �ȶ�
+// 分类 -------------- 内部比较排序
+// 数据结构 ---------- 数组
+// 最差时间复杂度 ---- O(n^2)
+// 最优时间复杂度 ---- O(nlogn)
+// 平均时间复杂度 ---- O(n^2)
+// 所需辅助空间 ------ O(1)
+// 稳定性 ------------ 稳定
 
 void InsertionSortDichotomy(int A[], int n)
 {
     for (int i = 1; i < n; i++)
     {
-        int get = A[i];                    // ����ץ��һ���˿���
-        int left = 0;                    // ���������ϵ�����������õģ����Կ����ö��ַ�
-        int right = i - 1;                // �������ұ߽���г�ʼ��
-        while (left <= right)            // ���ö��ַ���λ���Ƶ�λ��
+        int get = A[i];                    // 右手抓到一张扑克牌
+        int left = 0;                    // 拿在左手上的牌总是排序好的，所以可以用二分法
+        int right = i - 1;                // 手牌左右边界进行初始化
+        while (left <= right)            // 采用二分法定位新牌的位置
         {
-            int mid = (left + right) / 2;//����������е��м�ֵ���� 
-            if (A[mid] > get)//�м�ֵ�ϴ� 
-                right = mid - 1;//��ȥ�ϰ����� 
-            else //�м�ֵ��С 
-                left = mid + 1;//��ȥ�°����� 
+            int mid = (left + right) / 2;//获得有序序列的中间值索引 
+            if (A[mid] > get)//中间值较大 
+                right = mid - 1;//舍去上半序列 
+            else //中间值较小 
+                left = mid + 1;//舍去下半序列 
         }
-        for (int j = i - 1; j >= left; j--)    // ������������λ���ұߵ������������ƶ�һ����λ
+        for (int j = i - 1; j >= left; j--)    // 将欲插入新牌位置右边的牌整体向右移动一个单位
         {
             A[j + 1] = A[j];
         }
-        A[left] = get;                    // ��ץ�����Ʋ�������
-        printf("��%d�ˣ�",i); 
+        A[left] = get;                    // 将抓到的牌插入手牌
+        printf("第%d趟：",i); 
 	    for (int j = 0; j < n; j++)
 	    {
 	        printf("%d ", A[j]);
@@ -40,10 +40,10 @@ void InsertionSortDichotomy(int A[], int n)
 
 int main()
 {
-    int A[] = { 5, 2, 9, 4, 7, 6, 1, 3, 8 };// ��С������ֲ�������
+    int A[] = { 5, 2, 9, 4, 7, 6, 1, 3, 8 };// 从小到大二分插入排序
     int n = sizeof(A) / sizeof(int);
     InsertionSortDichotomy(A, n);
-    printf("���ֲ�����������");
+    printf("二分插入排序结果：");
     for (int i = 0; i < n; i++)
     {
         printf("%d ", A[i]);
