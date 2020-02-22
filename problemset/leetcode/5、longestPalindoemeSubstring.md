@@ -1,10 +1,10 @@
 # 最长回文子串的长度
-### 1、求解方法——时间复杂度 空间复杂度
+## 1、求解方法——时间复杂度 空间复杂度
 * 暴力枚举——O（n^3）O（1）
 * 中点扩展法——O（n^2）O（1)
 * 动态规划法——O（n^2）O（n^2）
 * manacher算法——O（n） O（n）
-### 2、测试用例
+## 2、测试用例
 * null
 * a
 * aaa
@@ -12,12 +12,12 @@
 * asdfgfdsa
 * asafghjjhgf
 * asafghjjjhgfklp
-### 3、具体解法代码——C++实现 c++14
-#### 3.1 暴力枚举
+## 3、具体解法代码——C++实现 c++14
+### 3.1 暴力枚举
 * 第一步：枚举出所有可能的子串
 * 第二步：判断各个子串是否是回文串
 * 第三步：如果是回文串，更新最大的回文子串的长度
-##### 代码：
+#### 代码：
 ```c++
 /**
  * 子函数：判断该子串是否是回文串
@@ -59,12 +59,12 @@ int longestPalindrome(const char *str){
     return longest;
 }
 ```
-#### 3.2 中点扩展法
+### 3.2 中点扩展法
 * 第一步：遍历所有的字符位置i
 * 第二步：求出以i为中心的回文串的长度
 * 第三步：更新最大的回文子串的长度
-##### 代码：
-#### C++版
+#### 代码：
+### C++版
 ```c++
 int palindrome(const char *str, int mid){
     int left = mid - 1;
@@ -104,7 +104,7 @@ int longestPalindrome(const char *str){
     return longest;
 }
 ```
-#### Java版
+### Java版
 ```java
 class Solution {
     public String longestPalindrome(String s) {
@@ -138,13 +138,13 @@ class Solution {
 }
 ```
 
-#### 3.1 动态规划
+### 3.1 动态规划
 * 第一步：初始化辅助数组p[len][len]，每个字符本身是长度为1的回文串，相邻两个相等的字符也是长度为1的回文串
     * p[i][j] = 1，表示j-1~i+1的子串是回文串
     * p[i][j] = 0，表示j-1~i+1的子串不是回文串
 * 第二步：枚举所有可能的子串，利用辅助数组，进行快速求解最长回文子串的长度
 * 第三步：更新最大的回文子串的长度
-##### 代码：
+#### 代码：
 ```c++
 int  longestPalindrome3(const char *str) {
     if (str == nullptr) {
@@ -182,7 +182,7 @@ int  longestPalindrome3(const char *str) {
     return longest;
 }
 ```
-#### 3.1 manacher算法
+### 3.1 manacher算法
 * 第一步：对原来的串进行预处理，插入辅助字符#，将其转化成一个只有奇数长度的回文子串的字符串
 * 第二步：利用辅助空间p[n]，变量mx和id，遍历字符串。
     * p[i]表示处理过的字符串的第i位的回文串长度
@@ -193,7 +193,7 @@ int  longestPalindrome3(const char *str) {
     * 扩展回文串，更新p[i]的值
     * 更新mx和id
     * 更新最长的子串的长度
-##### 代码：
+#### 代码：
 ```c++
 int longestPalindrome(const char *str) {
         if (str == nullptr) return 0;

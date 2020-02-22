@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Leetcode93",
+            "request": "launch",
+            "mainClass": "problemset.code.Leetcode93",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Leetcode321",
             "request": "launch",
             "mainClass": "problemset.code.Leetcode321",
