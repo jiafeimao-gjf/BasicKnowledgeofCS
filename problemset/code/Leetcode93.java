@@ -4,10 +4,16 @@ import java.util.*;
 public class Leetcode93 {
     public static void main(String[] args) {
         Leetcode93 leetcode93 = new Leetcode93();
-        List<String> res = leetcode93.restoreIpAddresses("2552551122");
+        long start = System.nanoTime();
+        List<String> res = leetcode93.restoreIpAddresses("11111111111");
+        long end = System.nanoTime();
+        System.out.println("use " + (end - start)/1000000 + "ms");
         leetcode93.print(res);
         res.clear();
-        res = leetcode93.restoreIpAddresses("25525511135");
+        start = System.nanoTime();
+        res = leetcode93.restoreIpAddresses("1111111111");
+        end = System.nanoTime();
+        System.out.println("use " + (end - start)/1000000 + "ms");
         leetcode93.print(res);
     }
     private void print(List<String> res) {
