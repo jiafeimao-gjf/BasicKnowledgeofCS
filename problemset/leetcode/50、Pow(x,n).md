@@ -23,9 +23,29 @@
 链接：https://leetcode-cn.com/problems/powx-n
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 -->
 
-### 代码
-- 快速幂
-    - 循环实现
+# 题解
+## 1、暴力计算
+- 时间 $O(n)$
+- 空间 $O(1)$
+```java
+class Solution {
+    public double myPow(double x, int n) {
+        long N = n;
+        if (N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+        double ans = 1;
+        for (long i = 0; i < N; i++)
+            ans = ans * x;
+        return ans;
+    }
+};
+```
+## 快速幂
+- 时间 $O(log(n))$
+- 空间 $O(1)$
+- 循环实现
 ```java
 class Solution {
     public double myPow(double x, int n) {
@@ -46,4 +66,31 @@ class Solution {
         return res;
     }
 }
+```
+
+- 递归实现
+```java
+class Solution {
+    private double fastPow(double x, long n) {
+        if (n == 0) {
+            return 1.0;
+        }
+        double half = fastPow(x, n / 2);
+        if (n % 2 == 0) {
+            return half * half;
+        } else {
+            return half * half * x;
+        }
+    }
+    public double myPow(double x, int n) {
+        long N = n;
+        // 负指数幂
+        if (N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+
+        return fastPow(x, N);
+    }
+};
 ```
