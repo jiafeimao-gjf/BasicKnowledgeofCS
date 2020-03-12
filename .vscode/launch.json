@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SubStringTest",
+            "request": "launch",
+            "mainClass": "problemset.code.SubStringTest",
+            "projectName": "BasicKnowledgeofCS_700c998d"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Leetcode93",
             "request": "launch",
             "mainClass": "problemset.code.Leetcode93",
