@@ -42,7 +42,7 @@ class Solution {
     }
 };
 ```
-## 快速幂
+## 2、快速幂
 - 时间 $O(log(n))$
 - 空间 $O(1)$
 - 循环实现
@@ -81,6 +81,8 @@ class Solution {
         } else {
             return half * half * x;
         }
+
+        // return n % 2 == 0 ? half * half : half * half * x;
     }
     public double myPow(double x, int n) {
         long N = n;
