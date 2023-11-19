@@ -5,10 +5,10 @@ int degree[500];
 int uset[500];
 
 int find(int x){
-    int r = x;//Î¯ÍĞrÈ¥ÕÒÕÆÃÅ
-    while(uset[r]!=r) //²»ÊÇÕÆÃÅ
-        r = uset[r];//rÎ¯ÍĞÉÏ¼¶ÕÒÕÆÃÅ
-    return r;       //ÕÆÃÅ¼İµ½
+    int r = x;//å§”æ‰˜rå»æ‰¾æŒé—¨
+    while(uset[r]!=r) //ä¸æ˜¯æŒé—¨
+        r = uset[r];//rå§”æ‰˜ä¸Šçº§æ‰¾æŒé—¨
+    return r;       //æŒé—¨é©¾åˆ°
 }
 int main(){
     for(int i = 0;i < 500;i++){
@@ -18,33 +18,33 @@ int main(){
     int N,M;
     int x,y;
     cin>>N>>M;
-    for(int i = 0;i < M;i++){//Í³¼Æ¸÷¸öµãµÄ¶È
+    for(int i = 0;i < M;i++){//ç»Ÿè®¡å„ä¸ªç‚¹çš„åº¦
         cin>>x>>y;
         degree[x-1]++;
         degree[y-1]++;
-        uset[find(x)] = find(y);//yÊÇxµÄÉÏ¼¶
+        uset[find(x)] = find(y);//yæ˜¯xçš„ä¸Šçº§
     }
 
     int kind = 0;
     for(int i = 0;i < N;i++){
         cout<<degree[i];
         if(i < N-1) cout<<' ';
-        if(degree[i]%2!=0) {//ÕÒµ½Ò»¸öÆæÊı¶ÈµÄµãÇÒÃ»ÓĞ0¶ÈµÄµã
-            kind++;//ÆæÊı¶ÈµãµÄ¸öÊı¼Ó 1
+        if(degree[i]%2!=0) {//æ‰¾åˆ°ä¸€ä¸ªå¥‡æ•°åº¦çš„ç‚¹ä¸”æ²¡æœ‰0åº¦çš„ç‚¹
+            kind++;//å¥‡æ•°åº¦ç‚¹çš„ä¸ªæ•°åŠ  1
         }
     }
     cout<<endl;
-    //²éÕÒÊÇ·ñ´æÔÚ¶ÀÁ¢µÄ¶à¸öÃÅÅÉ
+    //æŸ¥æ‰¾æ˜¯å¦å­˜åœ¨ç‹¬ç«‹çš„å¤šä¸ªé—¨æ´¾
     int cnt = 0;
     for(int i = 0;i < N;i++){
         if(uset[i] == i) cnt++;
     }
-    if(cnt != 1) kind = -1;//Èç¹ûÃÅÅÉÊı²»µÈÓÚ1£¬Ôò´æÔÚ¶à¸öÃÅÅÉ
+    if(cnt != 1) kind = -1;//å¦‚æœé—¨æ´¾æ•°ä¸ç­‰äº1ï¼Œåˆ™å­˜åœ¨å¤šä¸ªé—¨æ´¾
 
 
-    if(kind == 0){//¶ÈÊıÈ«ÎªÅ¼
+    if(kind == 0){//åº¦æ•°å…¨ä¸ºå¶
         cout<<"Eulerian"<<endl;
-    }else if(kind == 2){//Á½¸ö¶ÈÊıÎªÆæÊıµÄµã
+    }else if(kind == 2){//ä¸¤ä¸ªåº¦æ•°ä¸ºå¥‡æ•°çš„ç‚¹
         cout<<"Semi-Eulerian"<<endl;
     }else{
         cout<<"Non-Eulerian"<<endl;
