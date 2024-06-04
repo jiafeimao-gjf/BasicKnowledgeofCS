@@ -1,0 +1,39 @@
+---
+title: 将数组中的所有奇数调整到偶数前面
+categories:
+  - 算法题集
+tags:
+  - 数组
+date: 2019-12-26 23:10:49
+---
+## 题目描述
+> 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。
+```c++
+
+class Solution {
+public:
+    void reOrderArray(vector<int> &array) {
+        int size = array.size();
+        // 辅助奇偶数组
+        vector<int> even,old;
+        //两个数组，一个放奇数一个放偶数
+        for (int i = 0; i < size; ++i){
+            // 奇偶分离
+            if (array[i] % 2 == 1){
+                old.push_back(array[i]);
+            }else{
+                even.push_back(array[i]);
+            }
+        }
+        // 合并两个奇偶数组
+        array.clear();
+        for(int i = 0;i < size; ++i){
+            if (i < old.size()){
+                array.push_back(old[i]);
+            }else{
+                array.push_back(even[i-old.size()]);
+            }
+        }
+    }
+};
+```

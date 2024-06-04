@@ -1,0 +1,89 @@
+---
+title: 按之字形顺序打印二叉树
+date: 2019-12-15 20:18:25
+categories:
+- 算法题集
+tags: 
+- BTree
+---
+## 题目描述
+请实现一个函数按照之字形打印二叉树，
+即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。
+
+## 思路分析
+- 基础——理解二叉树层序遍历，理解栈的特点
+- 方法——辅助变量巧用：状态确认。用一个值确认当前的层的奇偶，打印节点。一个值确认下一层的奇偶，存储新节点。
+- 思路巧妙之处：双栈的应用，辅助变量，在打印节点的同时，按照奇偶层存储下一层的节点
+
+
+```c++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    
+    // 两个栈存储，打印各个行
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        vector<vector<int> > res;
+        // 非法判断
+        if (pRoot == nullptr) {
+            return res;
+        }
+        // 辅助变量
+        stack<TreeNode*> s[2];// 两个栈存储奇偶层的节点
+        int current = 0;// 标志当前的层的奇偶
+        int next = 1;// 标志下一层的奇偶
+        vector<int> level;
+        
+        // 遍历循环，算法主体
+        s[current].push(pRoot);// 存储第一层的根节点
+        while (!s[0].empty() || !s[1].empty()) {
+            // 读取数据
+            TreeNode* p = s[current].top();
+            s[current].pop();
+            
+            //存储结果数据
+            level.push_back(p->val);
+            
+            // 节点压栈
+            if (current == 0) {// 当前偶数层，下一层子节点从左到右压栈
+                if (p->left != nullptr) {
+                    s[next].push(p->left);
+                }
+                if (p->right != nullptr) {
+                    s[next].push(p->right);
+                }
+            } else { // 当前奇数层，下一层子节点从右到左压栈
+                if (p->right != nullptr) {
+                    s[next].push(p->right);
+                }
+                if (p->left != nullptr) {
+                    s[next].push(p->left);
+                }
+            }
+            
+            // 辅助变量变换
+            if (s[current].empty()) { // 当前层没有待打印的节点
+                // 奇偶层变换
+                current = 1 - current;
+                next = 1 - next;
+                res.push_back(level);// 存储当前层的节点输出顺序数据，到返回结果中
+                level.clear();// 清楚存储的当前层节点数据
+            }
+            
+        }
+
+        // 返回结果
+        return res;
+    }
+    
+};
+```

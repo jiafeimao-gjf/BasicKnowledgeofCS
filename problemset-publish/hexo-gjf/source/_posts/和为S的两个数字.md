@@ -1,0 +1,47 @@
+---
+title: 和为S的两个数字
+categories:
+  - 算法题集
+tags:
+  - 二分查找
+date: 2019-12-26 23:12:31
+---
+
+## 题目描述
+输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
+输出描述:
+> 对应每个测试案例，输出两个数，小的先输出。
+
+## 思路
+### 双指针法
+- 乘积最小，两个数之间的差值越大，乘积越小
+- 两个指针，一个指向头，一个指向尾
+- 和太小，头指针后移，和太大，尾指针前移
+- 循环遍历，直到找到第一组值
+
+也可以枚举暴力遍历，查找满足条件的、乘积最小的
+```C++
+class Solution {
+public:
+    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+        vector<int> res;
+        int lenght = array.size();
+        // 二分查找❌，滑动窗口
+        int a = 0;
+        int b = lenght - 1;
+        while (a < b){
+            int curSum = array[a] + array[b];
+            if (curSum == sum) {
+                res.push_back(array[a]);
+                res.push_back(array[b]);
+                return res;
+            } else if (curSum < sum){
+                a++;
+            } else {
+                b--;
+            }
+        }
+        return res;
+    }
+};
+```

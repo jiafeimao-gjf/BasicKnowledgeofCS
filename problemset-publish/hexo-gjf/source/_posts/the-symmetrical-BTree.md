@@ -1,0 +1,56 @@
+---
+title: 对称的二叉树
+categories:
+  - 算法题集
+tags:
+  - BTree
+date: 2019-12-26 23:12:31
+---
+## 题目描述
+请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。
+
+## 思路分析
+- 利用二叉树前序遍历，递归实现
+- 先判断当前节点是否满足是镜像二叉树
+- 若满足，递归遍历左右子树
+```C++
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+private:
+    // 递归判断是否是对称二叉树
+    bool isSymmetricalCore(TreeNode* pRoot1,TreeNode *pRoot2) {
+        // 必定一起到达叶子节点
+        if (pRoot1 == nullptr && pRoot2 == nullptr) {
+            return true;
+        }
+        // 非对称判断
+        if (pRoot1 == nullptr || pRoot2 == nullptr) {
+            return false;
+        }
+        
+        // 数值不等，不是对称的
+        if (pRoot1->val != pRoot2->val) {
+            return false;
+        }
+        // 递归判断左右子树是否满足对称二叉树的条件
+        return isSymmetricalCore(pRoot1->left,pRoot2->right)
+            && isSymmetricalCore(pRoot1->right,pRoot2->left);
+    }
+public:
+    bool isSymmetrical(TreeNode* pRoot)
+    {
+        return isSymmetricalCore(pRoot,pRoot);
+    }
+
+};
+
+```
