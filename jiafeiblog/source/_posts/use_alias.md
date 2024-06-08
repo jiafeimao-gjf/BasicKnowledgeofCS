@@ -81,13 +81,13 @@ unalias shortname
 - 快速更新并部署到本地命令
 
 ```bash
-alias hexogs="hexo generate & hexo server"
+alias hexogs="hexo generate && hexo server"
 ```
 
 - 快速更新并部署到服务器命令
 
 ```bash
-alias hexogd="hexo generate & hexo deploy"
+alias hexogd="hexo generate && hexo deploy"
 ```
 
 
