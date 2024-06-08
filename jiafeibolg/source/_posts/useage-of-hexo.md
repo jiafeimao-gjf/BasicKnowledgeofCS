@@ -1,5 +1,5 @@
 ---
-title: 使用hexo
+title: 使用hexo的步骤
 date: 2019-12-15 18:59:47
 categories:
 - 博客配置
@@ -71,3 +71,22 @@ $ hexo new artical-name
 $ hexo generate             # 生成静态页面
 $ hexo deploy            # 将文章部署到Github
 ```
+
+## 7. 设置自定义主题
+
+- 选择自己喜欢的主题
+
+在[hexo的主题网站](https://hexo.io/themes/)上选择自己喜欢的主题。
+
+- 克隆主题代码
+
+进入github开源仓库，`git clone` 到hexo 博客的themes目录下。
+
+
+- 本地使用并调试
+
+在`_config.yml` 的 `theme: landscape` 的 `landscape` 改成自己的主题的文件名。
+
+修改成自己的内容。包括：头像、超链接、标题等等。
+
+## 8、更多的话参考 hexo官方主页：https://hexo.io/zh-cn/
