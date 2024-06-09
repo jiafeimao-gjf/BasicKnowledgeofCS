@@ -1,5 +1,5 @@
 ---
-title: go_dev_mudule_config
+title: go开发之go module配置
 categories:
   - go开发
 tags:
@@ -67,3 +67,6 @@ export https_proxy=http://your-proxy-server:port
 
 完成这些步骤后，你就成功配置了 Go Module 在 macOS 上的开发环境，可以方便地管理项目依赖了。
 
+### 参考资料
+
+- go 社区：https://learnku.com/go/wikis/38122
