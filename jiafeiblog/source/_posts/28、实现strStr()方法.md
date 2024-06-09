@@ -32,7 +32,7 @@ Return the index of the first occurrence of needle in haystack, or -1 if needle 
 ### 原理看[链接](https://blog.csdn.net/v_july_v/article/details/7041827)
 ### 代码
 - 暴力破解,O(M*N)
-```C++
+```cpp
 int strStr(string haystack, string needle) {
         if (haystack.length() == 0 && needle.length() != 0) return -1;
         if (needle.length() == 0) return 0;
@@ -55,7 +55,7 @@ int strStr(string haystack, string needle) {
     }
 ```
 - 优雅的一次遍历，但是没有优化，最后长度不足的时候，可以直接退出。O(M*N)
-```C++
+```cpp
 int strStr(string haystack, string needle) {
     if (needle.empty()) {
         return 0;
@@ -80,7 +80,7 @@ int strStr(string haystack, string needle) {
 }
 ```
 - 函数库解法
-```C++
+```cpp
 int strStr(string haystack,string needle) {
     if (needle.empty()) {return 0;}
     int pos = haystack.find(needle);
@@ -89,7 +89,7 @@ int strStr(string haystack,string needle) {
 ```
 - KMP 解法 O(M+N)
 - 智能回溯，较少无用的遍历
-```C++
+```cpp
 // getNext函数，构建有限状态机
 vector<int> getNext(string str) {
     int len = str.size();
@@ -153,7 +153,7 @@ vector<int> getNext(string str) {
 }
 ```
 - BM 算法，时间复杂度最差和KMP一样 最佳是O(n)O(n)
-```C++
+```cpp
 // 创建坏字符集
 void get_bmB(string& T,vector<int>& bmB){
     int tlen = T.size();
@@ -227,7 +227,7 @@ int strStr(string haystack,string needle) {
 - Sunday 时间复杂度:
 - 最坏为O(M*N)O(M∗N) 平均复杂度为O(N)O(N)
 
-```C++
+```cpp
 int strStr(string haystack,string needle) {
     if (needle.empty()) { return 0;} 
     

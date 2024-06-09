@@ -32,7 +32,7 @@
 ```
 
 ### 代码
-```C++
+```cpp
 // mat二分匹配图 from起始点
 int mat[105][105], from[105], nn, mm;
 bool vis[105];// 访问记录

@@ -29,7 +29,7 @@ cef
 2
 ```
 
-```c++
+```cpp
 #include <cstdio>
 char chs[51][51];
 
@@ -108,7 +108,7 @@ int main(){
 ```
 
 
-```c++
+```cpp
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -175,7 +175,7 @@ n个人（0,1,2,3,4...n-1），围成一圈，从编号为k的人开始报数，
 3
 ```
 
-```c++
+```cpp
 #include <iostream>
 #include <queue>
  
@@ -243,7 +243,7 @@ int main(){
     *
 ```
 
-```c++
+```cpp
 #include <cstdio>
 
 int main(){
@@ -301,7 +301,7 @@ C
 ABCBA
 ```
 
-```c++
+```cpp
 #include <cstdio>
 #include <string>
 
@@ -350,7 +350,7 @@ int main(){
 3
 ```
 
-```c++
+```cpp
 #include <cstdio>
 
 int main(){
@@ -391,7 +391,7 @@ int main(){
 ```
 2 3 5 7 11 13 17 19
 ```
-```c++
+```cpp
 #include <cstdio>
 #include <cmath>
 int main(){
@@ -447,7 +447,7 @@ int main(){
 ```
 2
 ```
-```c++
+```cpp
 #include <cstdio>
 // 欧几里得算法，求最大公约数
 long gcd(long a,long b){
@@ -506,7 +506,7 @@ $1<=T<=1e8,1<=n<=1000000$
 4
 78498
 ```
-```c++
+```cpp
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -606,7 +606,7 @@ $1<=n<=19$
 10  9  8 7
 ```
 
-```c++
+```cpp
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -670,7 +670,7 @@ int main(){
 ```
 
 
-```c++
+```cpp
 /*分析：
 2*n-1次
 奇数 j= y+1:i++,j--;j>=0
@@ -750,7 +750,7 @@ int main(){
 ```
 3
 ```
-```c++
+```cpp
 /* 思路
 n支队伍，m场比赛
 n*m个结果
@@ -833,7 +833,7 @@ n≥k≥0
 1 4
 ```
 
-```c++
+```cpp
 #include <cstdio>
 
 int main(){
@@ -884,7 +884,7 @@ int main(){
 9
 ```
 
-```c++
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -932,7 +932,7 @@ int main(){
 20
 ```
 
-```c++
+```cpp
 #include <cstdio>
 
 int main(){

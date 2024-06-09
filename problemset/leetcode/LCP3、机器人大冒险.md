@@ -57,7 +57,7 @@ obstacles[i]不为原点或者终点
 
 ## 代码
 - 巧妙计算，他人的代码
-```C++
+```cpp
 bool robot(string command, vector<vector<int>> & obstacles,int x,int y){
     // 存储轨迹
     int xx = 0,yy = 0;

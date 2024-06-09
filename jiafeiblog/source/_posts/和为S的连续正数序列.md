@@ -25,7 +25,7 @@ date: 2019-12-26 23:12:31
 - 值大了left增加
 - 类利用了二分查找实现
 
-```C++
+```cpp
 class Solution {
 public:
     

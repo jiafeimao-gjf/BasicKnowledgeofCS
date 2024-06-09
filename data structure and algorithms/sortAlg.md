@@ -64,7 +64,7 @@ O(M)|计数排序、基数怕排序 (M由桶的数量决定)
 ### 排序思想
 > 将每个元素逐个插入到前面已经排好序的序列中
 > 引入二分查找位置，从有序序列中查找插入位置
-```c++
+```cpp
 //插入排序，关键是找插入位置 
 void insertionSort(int A[], int n)
 {
@@ -114,7 +114,7 @@ void swap(int A[], int i, int j)
 ## 选择排序
 ### 排序思想
 > 每次预留一个位置给最值，然后遍历求最值，将最值放到目的位置
-```C++
+```cpp
 //选择排序也是一个渐进排序过程，逐个调出最小值（最大值），直至没有未完成 序列为空 
 void selectionSort(int A[], int n)
 {
@@ -141,7 +141,7 @@ void selectionSort(int A[], int n)
 ### 变体：鸡尾酒排序的排序思想
 > 每次循环找两个最值，最大和最小，放置于两端，直至完成排序。
 
-```C++
+```cpp
 
 //冒泡排序 
 void bubbleSort(int A[], int n)
@@ -187,7 +187,7 @@ void cocktailSort(int A[], int n)
 ## 快速排序
 ### 排序思想
 > 二分，随机或者按照规则选取一个值，按照值进行二分，将原数组分成一堆大数和一堆小数。递归执行二分。直至完成排序。
-```c++
+```cpp
 int partition(int A[], int left, int right)  // 划分函数
 {
     int pivot = A[right];               // 这里每次都选择最后一个元素作为基准
@@ -225,7 +225,7 @@ void quickSort(int A[], int left, int right)
   4    5     6     7
  8 9 10 11 12 13 14 15 
 ```
-```c++
+```cpp
 //堆排序 
 void heapify(int A[], int i, int size)  // 从A[i]向下进行堆调整，size是待排序的元素个数 
 {
@@ -270,7 +270,7 @@ void heapSort(int A[], int n)
 ### 排序思想
 > 排序小组节点集合，两两归并相邻集合、完成排序。递归思想+归并思想。
 
-```c++
+```cpp
 //归并排序 
 void merge(int A[], int left, int mid, int right)// 合并两个已排好序的数组A[left...mid]和A[mid+1...right]
 {
@@ -329,7 +329,7 @@ void mergeSortIteration(int A[], int len)    // 非递归(迭代)实现的归并
 ### 排序思想
 > 利用插入排序来排序间隔点，缩小间隔，完成排序！
 > 数量大时，可以用二分插入排序
-```c++
+```cpp
 //希尔排序 
 void mhellSort(int A[], int n)
 {

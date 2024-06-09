@@ -1,6 +1,6 @@
 ## 编写一个栈，可以以O(1)的时间复杂度返回栈中的最小值
 
-```c++
+```cpp
 #include <iostream>
 #include <vector>
 #include <string>
@@ -65,7 +65,7 @@ public:
 
 ## 剑指offer 中的要求push()、pop()、min() 的事件复杂度都为O(1)
 ### 代码：
-```c++
+```cpp
 /**
     借助c++的内置栈实现
 */

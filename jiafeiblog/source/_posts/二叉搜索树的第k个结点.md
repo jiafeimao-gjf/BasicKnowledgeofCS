@@ -69,7 +69,7 @@ public class Solution {
 ```
 
 ### C++版 递归实现
-```C++
+```cpp
 /*
 struct TreeNode {
     int val;

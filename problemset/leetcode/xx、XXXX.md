@@ -12,7 +12,7 @@ class Solution {
 }
 ```
 
-```C++
+```cpp
 // C++
 class Solution {
 

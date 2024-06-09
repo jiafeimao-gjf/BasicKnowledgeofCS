@@ -30,7 +30,7 @@ date: 2019-12-23 23:11:19
     - 数字转换
     - 非法判断
     - 结果返回
-```C++
+```cpp
 class Solution {
 public:
     int StrToInt(string str) {

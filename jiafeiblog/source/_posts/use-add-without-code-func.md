@@ -11,7 +11,7 @@ date: 2019-12-26 23:02:06
 ## 思路分析
 - 用十进制加法思想处理二进制数据的加法
 - 求和、求进位，直到进位为0.
-```C++
+```cpp
 class Solution {
 public:
     int Add(int num1, int num2)

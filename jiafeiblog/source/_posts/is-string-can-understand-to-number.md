@@ -15,7 +15,7 @@ date: 2019-12-25 23:54:30
     - 一般数字
     - 科学表达式
 
-```C++
+```cpp
 class Solution {
 public:
     bool isNumeric(char* string)

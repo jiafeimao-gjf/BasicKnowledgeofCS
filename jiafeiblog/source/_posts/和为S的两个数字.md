@@ -20,7 +20,7 @@ date: 2019-12-26 23:12:31
 - 循环遍历，直到找到第一组值
 
 也可以枚举暴力遍历，查找满足条件的、乘积最小的
-```C++
+```cpp
 class Solution {
 public:
     vector<int> FindNumbersWithSum(vector<int> array,int sum) {

@@ -32,7 +32,7 @@
 * 第二步：判断各个子串是否是回文串
 * 第三步：如果是回文串，更新最大的回文子串的长度
 ### 代码：
-```c++
+```cpp
 /**
  * 子函数：判断该子串是否是回文串
  */
@@ -80,7 +80,7 @@ int longestPalindrome(const char *str){
 * 第三步：更新最大的回文子串的长度
 #### 代码：
 ### C++版
-```c++
+```cpp
 // 由中心进行扩展，找出最长的回文串，要考虑偶数回文、和奇数回文
 int palindrome(const char *str, int mid){
     // 默认奇数回文
@@ -165,7 +165,7 @@ class Solution {
 * 第二步：枚举所有可能的子串，利用辅助数组，进行快速求解最长回文子串的长度
 * 第三步：更新最大的回文子串的长度
 ### 代码：
-```c++
+```cpp
 int longestPalindrome3(const char *str) {
     if (str == nullptr) {
         return 0;
@@ -214,7 +214,7 @@ int longestPalindrome3(const char *str) {
     * 更新mx和id
     * 更新最长的子串的长度
 ### 代码：
-```c++
+```cpp
 int longestPalindrome(const char *str) {
         if (str == nullptr) return 0;
 
