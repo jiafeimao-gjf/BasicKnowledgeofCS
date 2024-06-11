@@ -109,7 +109,10 @@ go run main.go
 
 为了提升开发效率，可以使用像`air`这样的工具实现自动编译和热重载。
 
+
 > https://darjun.github.io/2020/09/27/godailylib/air/
+
+> 最新：https://github.com/air-verse/air readme.md
 
 ```bash
 go get -u github.com/cosmtrek/air
