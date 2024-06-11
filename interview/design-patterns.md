@@ -217,9 +217,166 @@
 
 ### 6.1 设计模式在jdk中的应用
 
+> https://cloud.tencent.com/developer/article/1519352
+
+设计模式在JDK（Java Development Kit）中的应用非常广泛，它们被用来解决重复出现的设计问题，增加代码的可读性、可维护性和可扩展性。以下是一些设计模式在JDK中的具体应用实例：
+
+#### 创建型模式
+1. **单例模式**：
+   - `java.lang.Runtime`类就是一个典型的单例模式实现，确保程序运行时只有一个Runtime实例存在。
+   
+2. **工厂模式**：
+   - `java.util.Calendar`类的`getInstance()`方法返回一个Calendar实例，这是简单工厂模式的应用。
+   
+3. **抽象工厂模式**：
+   - `java.awt.Toolkit`和`java.awt.ImageKit`展示了抽象工厂模式，用于创建不同平台的工具包对象。
+   
+4. **建造者模式**：
+   - `java.lang.StringBuilder`和`java.lang.StringBuffer`的append方法体现了建造者模式的思想，虽然它们不是严格意义上的建造者模式实现，但构建复杂对象的过程相似。
+   
+5. **原型模式**：
+   - `java.lang.Object`类的`clone()`方法是原型模式的直接体现，允许创建对象的副本。
+
+#### 结构型模式
+1. **适配器模式**：
+   - `java.util.Collections`类中的静态方法，如`list(Enumeration e)`，将Enumeration转换为List，这是一种类适配器模式的应用。
+   
+2. **桥接模式**：
+   - `java.awt.Graphics2D`类使用桥接模式来分离抽象（绘制操作）和实现（具体平台的绘制细节）。
+   
+3. **装饰模式**：
+   - `java.io.InputStream`及其子类如`BufferedInputStream`和`DataInputStream`展示了装饰者模式，允许在不修改原始类的基础上动态添加功能。
+   
+4. **组合模式**：
+   - `java.awt.Container`类和它的子类（如`Panel`和`Window`）使用组合模式来表示部分-整体层次结构。
+   
+5. **代理模式**：
+   - `java.lang.reflect.Proxy`类和相关API实现了动态代理模式，能够在运行时创建代理对象。
+
+#### 行为型模式
+1. **策略模式**：
+   - `java.util.Comparator`接口和Collections.sort()方法中的Comparator参数是一个策略模式的例子，允许在运行时选择排序算法。
+   
+2. **观察者模式**：
+   - `java.util.Observable`和`java.util.Observer`接口是观察者模式的直接实现，用于对象之间的 publish/subscribe 通信。
+   
+3. **模板方法模式**：
+   - `java.lang.Thread`类的`run()`方法是一个模板方法，子类可以通过重写该方法来定义线程执行的具体任务。
+   
+4. **责任链模式**：
+   - `java.util.logging.Logger`类的处理逻辑基于责任链模式，日志请求可以在多个处理器中传递直到被处理。
+   
+5. **状态模式**：
+   - 虽然JDK中没有直接明显的状态模式实现，但在某些复杂的类设计中可能会隐含使用此模式来管理状态转换。
+
+这些只是JDK中设计模式应用的一部分示例，实际上JDK源码中几乎包含了所有23种设计模式的实例，深入研究这些源码对于理解和应用设计模式非常有帮助。
+
 ### 6.3 设计模式在SpringMVC框架中的应用
+> https://juejin.cn/post/7087244824109285412
+> https://zhuanlan.zhihu.com/p/114244039
 
+- 工厂模式 : Spring使用工厂模式通过 BeanFactory、ApplicationContext 创建 bean 对象。
+- 代理模式 : Spring AOP 功能的实现。
+- 单例模式 : Spring 中的 Bean 默认都是单例的。
+- 模板方法模式 : Spring 中 jdbcTemplate、hibernateTemplate 等以 Template 结尾的对数据库操作的类，它们就使用到了模板模式。
+- 装饰者模式 : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同数据源。
+- 观察者模式 : Spring 事件驱动模型就是观察者模式很经典的一个应用。
+- 适配器模式 : Spring AOP 的增强或通知（Advice）使用到了适配器模式、Spring MVC 中也是用到了适配器模式适配Controller。
+- 策略模式 : Spring中的资源访问根据不同策略访问任何底层对应的资源。
+- 责任链模式 : Spring mvc中过滤器就使用了责任链模式，对请求进行拦截处理。
 ### 6.2 设计模式在Android系统中的应用
+设计模式在Android系统开发中扮演着至关重要的角色，它们帮助开发者编写更加高效、可维护和可扩展的代码。以下是一些在Android开发中常见设计模式的应用实例：
 
+#### 1. 单例模式 (Singleton)
+
+- `Android.app.Application`的实例常常被用作单例来保存全局状态或作为依赖注入的中心。
+- `SharedPreferences`的获取方式通常通过单例模式，确保每个应用程序上下文中只有一个实例存在。
+- 网络连接管理、数据库访问对象（DAO）等资源密集型对象也常设计为单例，以减少资源消耗和提高效率。
+
+#### 2. 观察者模式 (Observer)
+
+- Android中的LiveData和ViewModel组件，利用观察者模式来实现实时数据绑定和更新UI。
+- `BroadcastReceiver`机制，发送广播时，所有注册的接收器（观察者）都会收到通知并作出响应。
+
+#### 3. 建造者模式 (Builder)
+
+- `AlertDialog.Builder`类用于构建具有高度定制性的对话框，允许一步步设置各种属性，最后通过`create()`方法得到完整的对话框对象。
+- `NotificationCompat.Builder`用来构建通知对象，同样通过一系列设置方法，最后生成通知实例。
+
+#### 4. 工厂方法模式 (Factory Method)
+
+- Android中的`Intent`创建，如`Intent intent = new Intent(context, TargetActivity.class);`，尽管这更接近于简单工厂模式，但它体现了工厂模式的思想，即根据上下文创建合适的对象。
+- 图片加载库如Glide或Picasso，它们通过工厂方法创建请求对象，用户无需关心图片加载的底层实现细节。
+
+#### 5. 适配器模式 (Adapter)
+
+- 列表视图（如`ListView`, `RecyclerView`)的适配器（Adapter），用于将数据模型转换为视图组件，符合列表项的展示需求。
+
+#### 6. 策略模式 (Strategy)
+
+- 在Android动画系统中，通过设置不同的`Interpolator`（插值器），可以改变动画的行为策略，这是策略模式的体现。
+
+#### 7. 原型模式 (Prototype)
+
+- 尽管直接应用较少，但Android中某些对象复制操作，如通过序列化和反序列化来实现深拷贝，可以视为原型模式的间接应用。
+
+#### 8. 装饰者模式 (Decorator)
+
+- 在网络请求中，为`OkHttpClient`添加拦截器（Interceptor）以增强请求的功能，如添加日志记录、错误处理等，类似于装饰者模式。
+
+#### 9. 外观模式 (Facade)
+
+- `Android.content.ContentResolver`提供了统一的接口来访问不同数据提供者的数据，简化了外部对复杂系统内部的调用。
+
+这些设计模式在Android开发中的应用不仅优化了代码结构，还提高了代码的复用性和灵活性，是Android开发者不可或缺的技能。
 ### 6.4 设计模式在Android 开源组件中的应用
 
+设计模式在Android开源组件中的应用广泛且深刻，它们帮助这些组件变得更加模块化、可扩展和易于维护。以下是一些流行Android开源组件中设计模式的应用实例：
+
+#### 1. Retrofit
+- **设计模式**: 代理(Proxy) + 建造者模式(Builder)
+  - **应用实例**: Retrofit使用建造者模式来配置HTTP客户端，如设置baseUrl、添加转换器和适配器等，最后通过build()方法创建Retrofit实例。
+  - 代理模式体现在Retrofit接口的实现上，它动态地为定义的API接口生成实现类，代理实际的网络请求逻辑。
+
+#### 2. OkHttp
+OkHttp组件中应用了多种设计模式来提升其功能性和灵活性，以下是其中的一些关键设计模式及其应用：
+
+- **建造者模式 (Builder Pattern)**:
+   - OkHttp广泛使用建造者模式来创建复杂的对象，如`OkHttpClient.Builder`、`Request.Builder`和`RequestBody.Builder`等。这种模式允许用户以链式调用的方式逐步设置各种参数，最终通过`build()`方法生成不可变的配置对象，既保证了代码的可读性，也确保了对象的线程安全。
+
+- **单例模式 (Singleton Pattern)**:
+   - `OkHttpClient`类的设计鼓励以单例形式使用，以减少创建多个实例所带来的资源消耗。虽然OkHttp本身不强制为单例，但推荐这样做，因为每个`OkHttpClient`实例包含一个连接池和线程池，共享实例可以更高效地复用资源。
+
+- **责任链模式 (Chain of Responsibility Pattern)**:
+   - OkHttp的拦截器链实现了责任链模式，允许用户添加自定义的拦截器来处理请求前、请求中和响应后的各种逻辑，如日志记录、请求重试、缓存策略等。每个拦截器都有机会处理请求或传递给链中的下一个拦截器。
+
+- **工厂模式 (Factory Pattern)**:
+   - 用于创建不同类型对象的工厂方法存在于OkHttp中，例如创建`Call`、`WebSocket`实例的工厂方法，以及`CacheInterceptor`中的`CacheStrategy.Factory`，这些工厂方法为创建过程提供了灵活性和解耦。
+
+- **享元模式 (Flyweight Pattern)**:
+   - 虽然不是显而易见，但OkHttp的连接池和缓存机制隐含了享元模式的思想，通过复用连接和响应内容来减少内存占用和提高性能。
+
+这些设计模式的综合运用使OkHttp成为一个高效、灵活且易于使用的HTTP客户端库，适合在Android和Java平台上构建高性能的网络应用程序。
+
+#### 3. Glide
+- **设计模式**: 工厂方法模式(Factory Method) + 装饰者模式(Decorator)
+  - **应用实例**: Glide使用工厂方法模式来创建不同类型的请求对象，根据请求资源类型（如图片、GIF）创建合适的加载器。
+  - 装饰者模式体现在其对图片处理上，可以通过添加变换(Transformations)来动态修改图片（如缩放、圆角处理），而不影响原始图片加载流程。
+
+#### 4. LiveData & ViewModel
+- **设计模式**: 观察者模式(Observer)
+  - **应用实例**: LiveData遵循观察者模式，当数据发生变化时自动通知所有活跃的观察者（通常是UI组件）。ViewModel持有LiveData实例，使得界面与数据分离，提高MVVM架构的响应性和可测试性。
+
+#### 5. Room
+- **设计模式**: 工厂方法模式(Factory Method) + 代理模式(Proxy)
+  - **应用实例**: Room通过工厂方法模式创建数据库实例，并使用代理模式为DAO接口生成实现类，使得开发者可以以面向对象的方式操作数据库，而不必直接编写SQL语句。
+
+#### 6. EventBus
+- **设计模式**: 发布-订阅模式(Publish/Subscribe)
+  - **应用实例**: EventBus允许应用内的各个组件之间解耦通信，发送方发布事件，订阅方订阅感兴趣的事件类型，EventBus负责匹配并分发事件，这是一种典型的发布-订阅模式应用。
+
+#### 7. Dagger / Hilt
+- **设计模式**: 依赖注入(Dependency Injection)
+  - **应用实例**: 这些库通过注解来实现依赖的自动注入，使得组件之间的依赖关系更加清晰，易于管理和测试。Dagger使用静态工厂和构造器注入，Hilt在此基础上进一步简化了依赖注入的配置。
+
+以上例子展示了设计模式如何在Android开源组件中提高代码的结构质量，促进代码的重用，并降低系统的复杂性。
