@@ -24,7 +24,7 @@ date: 2020-07-26 00:19:44
 解释：我们最多可以放两块骨牌：[[0, 0], [0, 1]]以及[[0, 2], [1, 2]]。（见下图）
 ```
 
-![tu](../../images/domino_example_1.jpg)
+![tu](/images/domino_example_1.jpg)
 #### 示例 2：
 ```
 输入：n = 3, m = 3, broken = []
@@ -32,7 +32,7 @@ date: 2020-07-26 00:19:44
 解释：下图是其中一种可行的摆放方式
 
 ```
-![tu](../../images/domino_example_2.jpg)
+![tu](/images/domino_example_2.jpg)
 #### 限制：
 ```
 1 <= n <= 8
