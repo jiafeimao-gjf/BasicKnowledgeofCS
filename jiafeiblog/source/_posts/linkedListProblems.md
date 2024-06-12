@@ -1,7 +1,7 @@
 ---
 title: 链表题目集
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 链表
 date: 2019-12-25 23:54:30

@@ -1,7 +1,7 @@
 ---
 title: 把字符串转换成整数
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 类型转换
 date: 2019-12-23 23:11:19

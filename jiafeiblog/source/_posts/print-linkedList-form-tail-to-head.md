@@ -1,7 +1,7 @@
 ---
 title: 从尾到头打印链表
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 链表
 date: 2019-12-26 23:07:35

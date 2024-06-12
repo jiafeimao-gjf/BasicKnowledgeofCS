@@ -1,7 +1,7 @@
 ---
 title: 和为S的两个数字
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 二分查找
 date: 2019-12-26 23:12:31

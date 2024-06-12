@@ -1,7 +1,8 @@
 ---
 title: 后端入门必备 mysql 安装初始化
 categories:
-  - backend
+  - 后端
+  - 数据库
 tags:
   - mysql
 date: 2024-06-08 22:33:41

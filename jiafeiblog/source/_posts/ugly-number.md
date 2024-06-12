@@ -2,7 +2,7 @@
 title: 丑数
 date: 2019-12-17 09:38:33
 categories:
-- 算法题集
+- 剑指offer
 tags:
 - 动态规划
 ---

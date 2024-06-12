@@ -1,7 +1,7 @@
 ---
 title: 链表中倒数第K个节点
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 链表
 date: 2019-12-26 23:12:31

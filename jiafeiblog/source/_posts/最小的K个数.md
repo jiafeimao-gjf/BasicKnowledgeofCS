@@ -1,7 +1,7 @@
 ---
 title: 最小的k个数字
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 数组
   - 排序

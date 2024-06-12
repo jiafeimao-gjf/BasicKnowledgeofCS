@@ -1,7 +1,7 @@
 ---
 title: 对称的二叉树
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - BTree
 date: 2019-12-26 23:12:31

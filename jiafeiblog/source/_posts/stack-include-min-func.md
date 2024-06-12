@@ -1,7 +1,7 @@
 ---
 title: 包含min函数的栈
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 栈
 date: 2019-12-25 23:52:47

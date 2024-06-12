@@ -1,7 +1,7 @@
 ---
 title: 第一个只出现一次的字符
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 字符串
 date: 2019-12-26 23:09:06

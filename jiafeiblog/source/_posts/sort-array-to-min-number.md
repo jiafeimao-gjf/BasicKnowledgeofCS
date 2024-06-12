@@ -1,7 +1,7 @@
 ---
 title: 把数组排成最小的数字
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 排序
 date: 2019-12-23 23:08:33

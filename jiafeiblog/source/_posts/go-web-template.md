@@ -1,9 +1,10 @@
 ---
 title: go开发之web模版
 categories:
-  - backend
+  - 后端
+  - go开发
 tags:
-  - backend
+  - 后端
   - go
   - 模版
 date: 2024-06-10 17:36:47

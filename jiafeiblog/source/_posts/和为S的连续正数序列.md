@@ -1,7 +1,7 @@
 ---
 title: 和为S的连续正数序列
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 数组
   - 双指针

@@ -1,7 +1,7 @@
 ---
 title: 不用加减乘除做加法
 categories:
-  - 算法题集
+  - 剑指offer
 tags:
   - 位运算
 date: 2019-12-26 23:02:06

@@ -2,7 +2,7 @@
 title: 按之字形顺序打印二叉树
 date: 2019-12-15 20:18:25
 categories:
-- 算法题集
+- 剑指offer
 tags: 
 - BTree
 ---
