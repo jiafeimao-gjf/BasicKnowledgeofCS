@@ -446,3 +446,40 @@ https://mp.weixin.qq.com/s/8_g73xwsihgFQYn67BTP3Q
 ### 对自己的影响：
 
 把自己每天的时间和精力以做高效的方式花掉
+
+## 【安卓native崩溃】 Android 平台 Native 代码的崩溃捕获机制及实现
+> https://mp.weixin.qq.com/s/g-WzYF3wWAljok1XjPoo7w
+### 内容总结
+- 介绍了安卓中native崩溃的痛点问题和现有方案
+- 介绍了Linux的信号机制，是一种软中断信号，用于约定规则的跨进程通信
+  - 进一步介绍了：信号的接收、检测、处理，以及常见信号类型
+- 着重说明利润如何捕捉native crash
+  - 注册信号处理函数，实现对信号的感知，结合想过参数信息进行崩溃收集
+  - 设置额外栈空间，运行空间隔离
+  - 做一层兼容，避免影响系统本身的运行
+- 注意事项
+  - 防止信号处理死锁和死循环，
+  - 确定如何打印堆栈
+    - 子进程打印，google breakpad的方案
+    - 子线程打印
+-  收集native crash引发原因
+  - 根据信号中的code的值，进行查表归因
+  - pc值，内存额位置，定位崩溃指令
+  - 共享库名字和相对偏移地址，有：
+    - dladdr
+    - linux系统的进程地址空间布局
+    - 检查各个模块的在内存中的地址范围：`/proc/self/maps`
+- 获取堆栈
+  - 原理说明：利用之前收集到的信息，进行函数调用回溯，梳理函数调用链
+  - 实现堆栈获取
+- 获取函数符号（签名）
+  - libcorkscrew 可以通过libcorkscrew中的get_backtrace_symbols函数获得函数符号。
+  - dladdr 更通用的方法是通过dladdr获得函数名字。
+- 获得java堆栈
+  - native线程id和java是一样的，java层dump同一个线程堆栈即可
+- 实践应用
+
+### 对我的影响
+
+了解了linux进程崩溃相关的原理，以及如何开发native 模块捕获并还原native堆栈，同事dump出java的堆栈，实现整个进程崩溃堆栈的获取。
+
